@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for aqualung project.
 
@@ -32,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
+    'admin_shortcuts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -116,6 +119,26 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+ADMIN_SHORTCUTS = [
+    {
+        'shortcuts': [
+            {
+                'url_name': 'admin:catalogApp_catalog_changelist',
+                'title': u'Каталог',
+            },
+            {
+                'url_name': 'admin:catalogApp_goods_changelist',
+                'title': u'Товары',
+            },
+        ]
+    },
+]
+
+ADMIN_SHORTCUTS_SETTINGS = {
+    'hide_app_list': False,
+    'open_new_window': False,
+}
 
 # *** import development settings if exists ***
 
