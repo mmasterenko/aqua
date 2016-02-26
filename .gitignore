@@ -1,3 +1,4 @@
+settings_debug.py
 *.pyc
 .idea/
 .env
