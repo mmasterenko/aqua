@@ -1,2 +1,6 @@
+*.pyc
+.idea/
+.env
+staticfiles
 venv/
 gitignored/
