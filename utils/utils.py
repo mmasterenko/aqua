@@ -16,12 +16,12 @@ def group_list(obj_list, n):
     return [pager.page(N).object_list for N in pager.page_range]
 
 
-def grouplist(obj_lst, n, tail=False):
+def grouplist(obj_lst, n, tail=True):
     """
     Group lst by n elements.
     Example:
-    lst = [1,2,3,4,5,6]
-    grouplist(lst,2) -> [[1,2],[3,4],[5,6]]
+    lst = [1,2,3,4,5,6,7]
+    grouplist(lst,2) -> [[1,2],[3,4],[5,6],[7]]
 
     :param obj_lst: list of objects
     :param n:
