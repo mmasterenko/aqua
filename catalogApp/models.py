@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from aqualung.utils.storages import MyImgStorage
+from utils.storages import MyImgStorage
 
 upload_img = 'images'
 
@@ -11,6 +11,9 @@ def get_img_storage(w=None, h=None, crop=None):
 
 
 class Catalog(models.Model):
+    name = models.CharField(u'название каталога', max_length=90, unique=True)
+    img = models.ImageField(u'картинка', upload_to=upload_img, null=True, blank=True)
+
     class Meta:
         verbose_name_plural = u'каталог'
         verbose_name = u'каталог'
@@ -18,10 +21,15 @@ class Catalog(models.Model):
     def __unicode__(self):
         return self.name
 
-    name = models.CharField(u'название каталога', max_length=90, unique=True)
-
 
 class Goods(models.Model):
+    catalog = models.ForeignKey(Catalog, verbose_name=u'каталог', null=True, blank=True)
+
+    name = models.CharField(u'название', max_length=90)
+    price = models.DecimalField(u'цена', max_digits=9, decimal_places=2, null=True, blank=True)
+    text = models.TextField(u'описание', null=True, blank=True)
+    img = models.ImageField(u'картинка', upload_to=upload_img, null=True, blank=True)
+
     class Meta:
         verbose_name = u'товар'
         verbose_name_plural = u'товары'
@@ -30,15 +38,13 @@ class Goods(models.Model):
     def __unicode__(self):
         return self.name
 
-    catalog = models.ForeignKey(Catalog, verbose_name=u'каталог', null=True, blank=True)
-
-    name = models.CharField(u'название', max_length=90)
-    price = models.DecimalField(u'цена', max_digits=9, decimal_places=2, null=True, blank=True)
-    text = models.TextField(u'описание', null=True, blank=True)
-    img = models.ImageField(u'картинка', upload_to=upload_img, null=True, blank=True)
-
 
 class Attributes(models.Model):
+    goods = models.ForeignKey(Goods, verbose_name=u'товар', null=True, blank=True)
+
+    name = models.CharField(u'имя', max_length=90)
+    value = models.CharField(u'значение', max_length=90, null=True, blank=True)
+
     class Meta:
         verbose_name = u'аттрибут'
         verbose_name_plural = u'аттрибуты'
@@ -46,8 +52,3 @@ class Attributes(models.Model):
 
     def __unicode__(self):
         return u'%s:%s' % (self.name, self.value)
-
-    goods = models.ForeignKey(Goods, verbose_name=u'товар', null=True, blank=True)
-
-    name = models.CharField(u'имя', max_length=90)
-    value = models.CharField(u'значение', max_length=90, null=True, blank=True)
