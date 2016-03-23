@@ -13,7 +13,7 @@ class AttributesInline(admin.TabularInline):
 class GoodsAdmin(admin.ModelAdmin):
     inlines = [AttributesInline]
     search_fields = ('name', 'catalog__name')
-    list_display = ('name', 'price', 'catalog')
+    list_display = ('name', 'price', 'catalog', 'img')
 
 
 class AttributesAdmin(admin.ModelAdmin):

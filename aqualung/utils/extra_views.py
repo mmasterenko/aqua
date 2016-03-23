@@ -20,5 +20,5 @@ def media(req, path):
             content_type = mime
             break
 
-    image_data = open(file_name, 'rb').read()
-    return HttpResponse(image_data, content_type=content_type)
+    data = open(file_name, 'rb').read()
+    return HttpResponse(data, content_type=content_type)

@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Catalog
 
-# Create your views here.
+
+def categories(req):
+    pass
