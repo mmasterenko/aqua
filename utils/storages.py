@@ -11,12 +11,12 @@ from PIL import Image, ImageOps
 class MyImgStorage(FileSystemStorage):
     def __init__(self, *args, **kwargs):
         self.width = self.height = self.img_path = None
-        self.crop = None  # boolean
+        self.is_crop = None  # boolean
         try:
             self.width = kwargs.pop('width')
             self.height = kwargs.pop('height')
             self.img_path = kwargs.pop('img_path')
-            self.crop = kwargs.pop('crop')
+            self.is_crop = kwargs.pop('is_crop')
         except KeyError:
             pass
         super(MyImgStorage, self).__init__(*args, **kwargs)
@@ -121,7 +121,7 @@ class MyImgStorage(FileSystemStorage):
 
         im = Image.open(full_path)
 
-        if self.crop:
+        if self.is_crop:
             im = ImageOps.fit(im, size, Image.BICUBIC)
         else:
             im.thumbnail(size, Image.BICUBIC)
