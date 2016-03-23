@@ -18,4 +18,4 @@ def categories(req):
         'category_rows': group_list(Catalog.objects.all(), 3)
     }
     context.update(general)
-    return render(req, 'catalogApp/portfolio-3-col.html', context=context)
+    return render(req, 'catalogApp/catalog.html', context=context)
