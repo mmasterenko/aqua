@@ -9,7 +9,8 @@ def categories(req):
     general = {
         'keywords': u'водолазное снаряжение',
         'description': u'водолазное снаряжение',
-        'title': 'Aqua',
+        'title': u'Водолазное оборудование',
+        'brandname': u'Моя контора',
         'heading': u'Каталог',
         'subheading': u'',
         'breadcrumbs': [dict(name=u'каталог', url='#')]
