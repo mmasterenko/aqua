@@ -1,5 +1,6 @@
 {% extends 'catalogApp/base.html' %}
 {% load staticfiles %}
+{% load extra_filters %}
 {% block content %}
 
         <!-- Portfolio Item Row -->
@@ -19,11 +20,7 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            {% if good_item.img %}
-                                <img class="img-responsive" src="{{ good_item.img.url }}" alt="">
-                            {% else %}
-                                <img class="img-responsive" src="http://placehold.it/750x500" alt="">
-                            {% endif %}
+                            <img class="img-responsive" src="{{ good_item.img|placeholdit_if_none:'750x500' }}" alt="">
                         </div>
                         {% comment %}
                         <div class="item">
