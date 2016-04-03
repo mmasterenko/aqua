@@ -2,12 +2,24 @@
 
 from django.db import models
 from utils.storages import MyImgStorage
+from utils.model_mixins import SEOFieldsMixin
 
 upload_img = 'images'
 
 
-def get_img_storage(w=None, h=None, crop=None):
-    return MyImgStorage(width=w, height=h, img_path=upload_img, crop=crop)
+def get_img_storage(w=None, h=None, is_crop=None):
+    return MyImgStorage(width=w, height=h, img_path=upload_img, is_crop=is_crop)
+
+
+class GeneralInfo(SEOFieldsMixin, models.Model):
+    general_help_text = u'отображается на всех страницах в "шапке"'
+    about_help_text = u'отображается на главной странице'
+
+    brandname = models.CharField(u'название брэнда', max_length=20, help_text=general_help_text)
+
+    class Meta:
+        verbose_name = u'Общая информация'
+        verbose_name_plural = verbose_name
 
 
 class Catalog(models.Model):

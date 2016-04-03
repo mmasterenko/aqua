@@ -1,7 +1,21 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from .models import Goods, Attributes, Catalog
+from .models import Goods, Attributes, Catalog, GeneralInfo
+
+
+class GeneralInfoAdmin(admin.ModelAdmin):
+    actions = None
+    fieldsets = [
+        (u'Общая информация', {
+            'fields': ('brandname',),
+            'classes': ('wide',)
+        }),
+        (u'для SEO', {
+            'fields': ('title', 'meta_keywords', 'meta_desc'),
+            'classes': ('collapse', 'wide')
+        })
+    ]
 
 
 class AttributesInline(admin.TabularInline):
@@ -24,6 +38,7 @@ class AttributesAdmin(admin.ModelAdmin):
 admin.site.register(Catalog)
 admin.site.register(Goods, GoodsAdmin)
 admin.site.register(Attributes, AttributesAdmin)
+admin.site.register(GeneralInfo, GeneralInfoAdmin)
 
 admin.site.site_header = u'Интерфейс администратора'
 admin.site.index_title = u'Управление'
