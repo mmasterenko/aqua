@@ -3,7 +3,7 @@
 from utils import group_list
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from .models import Catalog, Goods
+from .models import Catalog, Goods, Photos
 
 
 def get_general(key):
@@ -34,7 +34,8 @@ def catalog(req, catalog_id=None):
 
 def good_item(req, good_id=None):
     good = Goods.objects.get(pk=good_id)
-    context = {'good_item': good}
+    images = Photos.objects.filter(goods_id=good_id)
+    context = {'good_item': good, 'images': images}
     local_general = {
         'title': good.name,
         'breadcrumbs': get_general('breadcrumbs') + [

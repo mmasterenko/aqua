@@ -64,3 +64,13 @@ class Attributes(models.Model):
 
     def __unicode__(self):
         return u'%s:%s' % (self.name, self.value)
+
+
+class Photos(models.Model):
+    goods = models.ForeignKey(Goods, verbose_name=u'товар', null=True, blank=True)
+
+    img = models.ImageField(u'картинка', upload_to=upload_img, null=True, blank=True)
+
+    class Meta:
+        verbose_name = u'изображение'
+        verbose_name_plural = u'изображения'

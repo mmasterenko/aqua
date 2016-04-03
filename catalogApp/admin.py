@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from .models import Goods, Attributes, Catalog, GeneralInfo
+from .models import Goods, Attributes, Catalog, GeneralInfo, Photos
 
 
 class GeneralInfoAdmin(admin.ModelAdmin):
@@ -24,8 +24,14 @@ class AttributesInline(admin.TabularInline):
     can_delete = True
 
 
+class PhotosInline(admin.TabularInline):
+    model = Photos
+    extra = 0
+    can_delete = True
+
+
 class GoodsAdmin(admin.ModelAdmin):
-    inlines = [AttributesInline]
+    inlines = [AttributesInline, PhotosInline]
     search_fields = ('name', 'catalog__name')
     list_display = ('name', 'price', 'catalog', 'img')
 
@@ -39,6 +45,7 @@ admin.site.register(Catalog)
 admin.site.register(Goods, GoodsAdmin)
 admin.site.register(Attributes, AttributesAdmin)
 admin.site.register(GeneralInfo, GeneralInfoAdmin)
+admin.site.register(Photos)
 
 admin.site.site_header = u'Интерфейс администратора'
 admin.site.index_title = u'Управление'
