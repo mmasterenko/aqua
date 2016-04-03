@@ -7,11 +7,11 @@
         <div class="row">
             {% for category in categories %}
                 <div class="col-md-4 img-portfolio">
-                    <a href="portfolio-item.html">
+                    <a href="{% url 'catalog_item' category.id %}">
                         <img class="img-responsive img-hover" src="http://placehold.it/700x400" alt="">
                     </a>
                     <h3>
-                        <a href="#">{{ category.name }}</a>
+                        <a href="{% url 'catalog_item' category.id %}">{{ category.name }}</a>
                     </h3>
                     <p></p>
                 </div>
