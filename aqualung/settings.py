@@ -123,6 +123,18 @@ STATICFILES_DIRS = (
 
 ADMIN_SHORTCUTS = [
     {
+        'title': u'Общая информация',
+        'shortcuts': [
+            {
+                'url_name': 'admin:catalogApp_generalinfo_changelist',
+                'title': u'Настройки',
+                'url_extra': '1',
+                'class': 'config'
+            },
+        ]
+    },
+    {
+        'title': u'Данные',
         'shortcuts': [
             {
                 'url_name': 'admin:catalogApp_catalog_changelist',
@@ -137,7 +149,7 @@ ADMIN_SHORTCUTS = [
 ]
 
 ADMIN_SHORTCUTS_SETTINGS = {
-    'hide_app_list': False,
+    'hide_app_list': True,
     'open_new_window': False,
 }
 
